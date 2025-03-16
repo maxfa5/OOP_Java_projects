@@ -17,6 +17,7 @@ abstract public class Furniture {
         price_ = price;
     }
 
+
     void appedRating(double newRating){
         rating_ =(rating_+ newRating)/2;
     }
@@ -103,17 +104,23 @@ class Table extends Furniture {
 
 class Chair extends Furniture {
     private int numberOfLegs_;
-
+    private boolean hasBackrest_;
     void sawingLeg(){
         numberOfLegs_--;
     }
     void addLeg(){
         numberOfLegs_++;
     }
-
-    public Chair(String name, String color, int width, int rating, String material, int numberOfLegs, double price) {
+    public void setHasBackrest(boolean hasBackrest) {
+        this.hasBackrest_ = hasBackrest;
+    }
+    public boolean hasBackrest() {
+        return hasBackrest_;
+    }
+    public Chair(String name, String color, int width, int rating, String material, int numberOfLegs, double price, boolean hasBackrest) {
         super(name, color, width, rating, material, price); 
         numberOfLegs_ = numberOfLegs;
+        hasBackrest_ = hasBackrest;
     }
 }
 

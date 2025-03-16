@@ -10,6 +10,12 @@ public class Shop {
     public  Shop(){
         catalog_ = new HashMap<>();
     }
+    
+    public void assortment(){
+        for (Furniture elem : catalog_.keySet()) {
+            System.out.printf("name:%s\n", elem.getName_());
+        }
+    }
 
     public void addFurniture(Furniture newObj){
         if (catalog_.containsKey(newObj)==true) {
