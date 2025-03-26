@@ -1,5 +1,7 @@
 package OOP.films;
 
+import java.util.ArrayList;
+
 class FilmCatalogue <T extends Movie>{
     public static void main(String[] args){
         FilmCatalogue<Movie> films = new FilmCatalogue<>(10);
@@ -43,16 +45,9 @@ class FilmCatalogue <T extends Movie>{
         return result;
     }
     public void playMovieByTitle(String title){
-        try {
             Movie movie = searchMovieByTitle(title);
             movie.play();
-            
-        } catch (Exception e) {
-                    }
     }
-
-    
-    
 }   
 
 abstract class Movie {

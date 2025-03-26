@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = "com.mycompany" // Замените на group ID вашей организации/проекта
+version = "1.0-SNAPSHOT" // Замените на версию вашего проекта
+
+repositories {
+    mavenCentral() // Репозиторий Maven Central
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['Generics/Calculator'] // Указываем папку с исходным кодом
+        }
+    }
+    test {
+        java {
+            srcDirs = ['Generics/Calculator/Test'] // Указываем папку с тестами
+        }
+    }
+}
+
+
+tasks.register('runCalcTest', JavaExec) {
+
+    mainClass.set('Generics/Calculator/Test/CalculatorTest.java') // Use mainClass instead
+}
+
+
+tasks.test {
+    useJUnitPlatform()
+}

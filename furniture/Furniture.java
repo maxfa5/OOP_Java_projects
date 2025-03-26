@@ -17,7 +17,6 @@ abstract public class Furniture {
         price_ = price;
     }
 
-
     void appedRating(double newRating){
         rating_ =(rating_+ newRating)/2;
     }

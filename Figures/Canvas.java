@@ -1,11 +1,11 @@
 package OOP.Figures;
 
+import OOP.Figures.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
-import OOP.transport.Vehicle;
 
-public class Canvas<T extends Circle, Square> {
+public class Canvas {
     private String name;
     private List<Shape> figures;
 
@@ -13,44 +13,64 @@ public class Canvas<T extends Circle, Square> {
         this.name = name;
         this.figures = new ArrayList<>(initialCapacity);
     }
-    void addShape(Shape newShape){
-        figures.add(newShape);
+    
+    public void addShape(Shape shape) {
+        figures.add(shape);
     }
 
-    void removeShape(int index){
-        if (index > 0 && index < figures.size()) 
+    void removeShape(int index) throws IllegalAccessError{
+        if (index >= 0 && index < figures.size()) 
             figures.remove(index);
+        else{
+            throw new IllegalAccessError("incorect index!"); 
+        }
     }
-    private void move(int index,String direction) {
+
+    private<T extends Movable > void moveParser(T shape, String direction) {
         switch (direction) {
             case "forward":
-                Shape[index].moveForward();
+                shape.moveForward();
                 break;
             case "backward":
-                movable.moveBackward();
+                shape.moveBackward();
                 break;
             case "left":
-                movable.moveLeft();
+                shape.moveLeft();
                 break;
             case "right":
-                movable.moveRight();
+                shape.moveRight();
                 break;
             default:
                 System.out.println("Неизвестное направление движения.");
         }
+    }
+    
 
-    void <T>drawAll(String direction){
+    void drawAll(){
         for (Shape shape : figures) {
-            move(shape, direction);
+            System.out.println(shape.draw());
+            
         }
     }
 
-    void moveAll(Movable movable){
+    void moveAll(String direction){
         for (Shape shape : figures) {
-            shape.Movable();
+            if (shape instanceof Movable) {
+                moveParser((Movable)shape, direction);
+            }
         }
     }
-
-resizeAll() - для изменения размера всех фигур
-
+    
+    void resizeAll(int is_increase){
+        for (Shape shape : figures) {
+            if (shape instanceof Resizable) {
+                if(is_increase == 1){
+                    ((Resizable) shape).increaseSize();
+                }else if(is_increase == 0){
+                    ((Resizable) shape).decreaseSize();
+                }else{
+                    throw new IllegalArgumentException("Invalid value for is_increase. Must be 0 or 1.");        }
+                }   
+            }
+        }
 }
